@@ -1,0 +1,9 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "rdrct"
+compatibility_date = "2024-10-22"
+pages_build_output_dir = ".svelte-kit/cloudflare"
+
+[[kv_namespaces]]
+binding = "DB"
+id = "f0587205e2f74606aa3db7b71e83412a"
+preview_id = "rdrct_test_db"
