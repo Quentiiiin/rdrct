@@ -27,6 +27,7 @@
 }} use:enhance>
   <h2 class=" text-xl text-green-300">Create a redirect</h2>
   <input
+    type="url"
     name="url"
     bind:this={input}
     bind:value={url}
