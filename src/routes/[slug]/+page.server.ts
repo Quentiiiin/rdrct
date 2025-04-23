@@ -1,4 +1,4 @@
-import { getValue } from '$lib';
+import { getValue, isFlagged } from '$lib';
 import { redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
@@ -21,14 +21,17 @@ export const load: PageServerLoad = async ({ params, platform, cookies }) => {
         }
     });
 
+    const isUrlFlagged = isFlagged(url ?? '');
+
     if(errorReturn) {
         return errorReturn;
-    } else if(url) {
+    } else if(url && !isUrlFlagged) {
         redirect(307, url);
     }
 
 	return {
         id: params.slug,
-        url: url
+        url: url,
+        isFlagged: isUrlFlagged
     }
 };

@@ -1,3 +1,5 @@
+const urlList = (await import(`./urls.txt?raw`)).default;
+
 function generateId() {
     const ran = `${crypto.randomUUID()}`.replaceAll('-','').substring(0,6);
     return ran;
@@ -28,4 +30,12 @@ export async function setValue(url: string, db: KVNamespace): Promise<string> {
     }
     await db.put(id, url);
     return id;
+}
+
+export function isFlagged(url: string) {
+    const urls = urlList.split('\n');
+    const urlSet = new Set(urls);
+    if(!URL.canParse(url)) return false;
+    const hostname = new URL(url).hostname;
+    return urlSet.has(hostname);
 }
